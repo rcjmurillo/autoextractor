@@ -1,0 +1,9 @@
+.py[co]
+__pycache__
+
+nosetests.xml
+
+.vscode/
+.idea/
+
+.DS_Store
