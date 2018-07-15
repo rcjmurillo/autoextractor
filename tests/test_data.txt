@@ -1,0 +1,4 @@
+;aspiration;body-style;bore;city-mpg;compression-ratio;curb-weight;drive-wheels;engine-location;engine-size;engine-type;fuel-system;fuel-type;height;highway-mpg;horsepower;length;make;normalized-losses;num-of-cylinders;num-of-doors;peak-rpm;price;stroke;weight;wheel-base;width
+0;std;sedan;3.50;23;8.80;2395;rwd;front;108;ohc;mpfi;gas;54.30;29;101,26;176.80;bmw;192;four;two;5800;1643000;2.80;2;101.20;64.80
+1;turbo;sedan;3.03;24;7.60;2191;fwd;front;98;ohc;mpfi;gas;50.60;30;150,40;157.30;dodge;148;four;-;5500;855800;3.39;1;93.70;63.80
+2;std;sedan;3.19;18;8.00;2824;4wd;front;136;ohc;mpfi;gas;54.30;22;115,50;176.60;audi;164;five;four;5500;1745000;3.40;2;99.40;66.40
