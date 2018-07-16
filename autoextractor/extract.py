@@ -55,6 +55,8 @@ def load(filepath):
     Create an in-memory map of row -> [(offset_in_file, value_length), ...] for the file at
     filepath mapping each row to the offsets where the data for each field start and ends.
     """
+    global _offsets_map
+    _offsets_map = {}  # Reset the map
     with open(filepath) as f:
         reader = csv.reader(f, delimiter=FIELD_SEP)
         offset = 0  # Keep track of the current offset in the file
@@ -78,3 +80,7 @@ def load(filepath):
             offset += 1  # + 1 to count the line separator
             if not skip_row:
                 _offsets_map[n] = offset_pairs
+
+
+def get_field_offsets():
+    return _offsets_map.items()

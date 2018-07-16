@@ -3,7 +3,7 @@ import unittest
 from autoextractor import extract
 
 
-class TestLoadFields(unittest.TestCase):
+class LoadFieldsTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Store the default fields to use them later
