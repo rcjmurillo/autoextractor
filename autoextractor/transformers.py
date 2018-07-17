@@ -6,6 +6,10 @@ ONE_HOT_ENCODE_FUNC_NAME = 'one_hot_encode_transformer'
 # Transformer functions
 
 
+def identity_transformer(value):
+    return value
+
+
 def build_one_hot_encode_map(field, values):
     """
     Populate the _one_hot_encode_map with all the different values found the values list
