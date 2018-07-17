@@ -48,6 +48,7 @@ assert F_NUMBER not in FIELDS_TO_EXTRACT, \
     'The number of the row should not be used as feature for model training'
 
 _offsets_map = {}
+_loaded_filepath = None
 
 
 def load(filepath):
@@ -56,7 +57,11 @@ def load(filepath):
     filepath mapping each row to the offsets where the data for each field start and ends.
     """
     global _offsets_map
+    global _loaded_filepath
+
     _offsets_map = {}  # Reset the map
+    _loaded_filepath = filepath
+
     with open(filepath) as f:
         reader = csv.reader(f, delimiter=FIELD_SEP)
         offset = 0  # Keep track of the current offset in the file
@@ -83,4 +88,4 @@ def load(filepath):
 
 
 def get_field_offsets():
-    return _offsets_map.items()
+    return _loaded_filepath, _offsets_map.items()

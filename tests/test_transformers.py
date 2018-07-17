@@ -1,9 +1,12 @@
 # coding: utf-8
 import operator
 import unittest
+from collections import defaultdict, OrderedDict
 
+from autoextractor import transformers
 from autoextractor.transformers import (
-    one_hot_encode_transformer,
+    build_one_hot_encode_map,
+    make_one_hot_encode_transformer,
     number_str_to_int_transformer,
     german_to_english_number_notation_transformer,
     make_value_is_equal_transformer,
@@ -13,28 +16,29 @@ from autoextractor.transformers import (
 
 
 class TransformersTestCase(unittest.TestCase):
-    def test_one_hot_encode_transformer(self):
-        cases = [
-            (
-                ['color', 'white', 'black', 'green', 'black'],
-                [['color_white', 'color_black', 'color_green'],
-                 [1, 0, 0],
-                 [0, 1, 0],
-                 [0, 0, 1],
-                 [0, 1, 0]]
-            ),
-            (
-                ['color', 'white', 'white', 'white'],
-                [['color_white'],
-                 [1],
-                 [1],
-                 [1]]
-            )
-        ]
+    def setUp(self):
+        transformers._one_hot_encode_map = defaultdict(OrderedDict)
 
-        for values, expected in cases:
-            result = one_hot_encode_transformer(values)
-            self.assertEqual(expected, list(result))
+    def test_one_hot_encode_transformer(self):
+        build_one_hot_encode_map(1, ['color', 'white', 'black', 'green', 'black'])
+        build_one_hot_encode_map(2, ['aspiration', 'sedan', 'turbo', 'hatchback'])
+        cases = {
+            1: [
+                ('white', [1, 0, 0]),
+                ('black', [0, 1, 0]),
+                ('green', [0, 0, 1]),
+            ],
+            2: [
+                ('sedan', [1, 0, 0]),
+                ('hatchback', [0, 0, 1]),
+                ('turbo', [0, 1, 0]),
+            ],
+        }
+
+        for field, values in cases.items():
+            transform = make_one_hot_encode_transformer(field)
+            for value, expected in values:
+                self.assertEqual(expected, list(transform(value)))
 
     def test_number_str_to_int_transformer(self):
         cases = [
