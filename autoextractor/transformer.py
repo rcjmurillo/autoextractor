@@ -134,7 +134,7 @@ def _gen_row(fp, offset_pairs):
             yield val
 
 
-def _process_file(filepath):
+def transform(filepath):
     # Get the offsets map created with extract.load
     loaded_filepath, field_offsets = extract.get_field_offsets()
 
@@ -153,7 +153,3 @@ def _process_file(filepath):
         # Generate rows
         for _, offset_pairs in field_offsets_iter:
             yield _gen_row(fp, offset_pairs)
-
-
-def transform(filepath):
-    return _process_file(filepath)
