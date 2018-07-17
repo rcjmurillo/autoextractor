@@ -49,8 +49,8 @@ _one_hot_encoded_headers = {}
 
 def _build_one_hot_encoded_maps(fp, field_offsets):
     """
-    Search for one-hot encoded fields and build a map (categorical_value -> index) from the
-    values in the dataset.
+    Search for one-hot encoded fields in the transformation definitionand build a map
+    (categorical_value -> index) from the values in the dataset.
     These maps are used later to build the binary vectors.
     """
     global _one_hot_encoded_headers
@@ -103,7 +103,7 @@ def _read_column(fp, col_index, field_offsets):
 def _flatten_header(field, value):
     """
     Flatten one hot encoded headers columns by the categorical values found in the dataset
-    if applicable, otherwise just return the value.
+    if applicable, otherwise just return the provided value.
     """
     if field in _one_hot_encoded_headers:
         for c in _one_hot_encoded_headers[field]:
