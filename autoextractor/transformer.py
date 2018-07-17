@@ -28,7 +28,8 @@ from .transformers import (
 
 INV_FIELDS_ORDER = {n: f for f, n in FIELDS_ORDER.items()}
 
-# Tranformation definition for each field
+# Tranformation definition for each field, a list of functions per field.
+# Each function must accept and return a value.
 field_transforms = {
     F_ENGINE_LOCATION: [make_one_hot_encode_transformer(F_ENGINE_LOCATION)],
     F_NUM_OF_CYLINDERS: [number_str_to_int_transformer],
