@@ -1,7 +1,6 @@
 *.py[co]
 __pycache__
-
-nosetests.xml
+build/
 
 .vscode/
 .idea/
